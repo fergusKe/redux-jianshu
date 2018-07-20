@@ -1,6 +1,6 @@
 {
-  "name": "redux-todolist",
-  "homepage": "https://fergusKe.github.io/redux-todolist",
+  "name": "redux-jianshu",
+  "homepage": "https://fergusKe.github.io/redux-jianshu",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
