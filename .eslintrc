@@ -63,6 +63,7 @@
     "jsx-a11y/anchor-is-valid": "off",
     "new-cap": "off",
     "react/style-prop-object": "off",
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "class-methods-use-this": "off"
   }
 }
