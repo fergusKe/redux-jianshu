@@ -11,7 +11,37 @@ import {
   NavSearch,
   Addition,
   Button,
+  SearchInfo,
+  SearchInfoTitle,
+  SearchInfoSwitch,
+  SearchInfoList,
+  SearchInfoItem
 } from './style';
+
+const getListArea = (show) => {
+  if (show) {
+    return (
+      <SearchInfo>
+        <SearchInfoTitle>
+          热门搜索
+          <SearchInfoSwitch>
+            换一批
+          </SearchInfoSwitch>
+        </SearchInfoTitle>
+        <SearchInfoList>
+          <SearchInfoItem>qwe</SearchInfoItem>
+          <SearchInfoItem>qwe</SearchInfoItem>
+          <SearchInfoItem>qwe</SearchInfoItem>
+          <SearchInfoItem>qwe</SearchInfoItem>
+          <SearchInfoItem>qwe</SearchInfoItem>
+          <SearchInfoItem>qwe</SearchInfoItem>
+        </SearchInfoList>
+      </SearchInfo>
+    );
+  }
+
+  return null;
+};
 
 const Header = props => (
   <HeaderWrapper>
@@ -40,6 +70,7 @@ const Header = props => (
         >
           &#xe614;
         </i>
+        {getListArea(props.focused)}
       </SearchWrapper>
     </Nav>
     <Addition>
