@@ -48,8 +48,14 @@ class Header extends Component {
           <SearchInfoTitle>
             热门搜索
             <SearchInfoSwitch
-              onClick={() => handlePageChange(page, totalPage)}
+              onClick={() => handlePageChange(page, totalPage, this.spinIcon)}
             >
+              <i
+                className="iconfont spin"
+                ref={icon => this.spinIcon = icon}
+              >
+                &#xe851;
+              </i>
               换一批
             </SearchInfoSwitch>
           </SearchInfoTitle>
@@ -88,7 +94,7 @@ class Header extends Component {
               />
             </CSSTransition>
             <i
-              className={focused ? 'focused iconfont' : 'iconfont'}
+              className={focused ? 'focused iconfont zoom' : 'iconfont zoom'}
             >
               &#xe614;
             </i>
@@ -129,13 +135,21 @@ const mapDispatchToProps = dispatch => ({
   handleMouseLeave() {
     dispatch(actionCreators.mouseLeave());
   },
-  handlePageChange(page, totalPage) {
+  handlePageChange(page, totalPage, spin) {
+    let originAngle = spin.style.transform.replace(/[^0-9]/ig, ''); // 如果不是0-9就替換成空字串
+    if (originAngle) {
+      originAngle = parseInt(originAngle, 10);
+    } else {
+      originAngle = 0;
+    }
+    console.log(originAngle);
+    spin.style.transform = `rotate(${originAngle + 360}deg)`;
+
     if (page < totalPage) {
       dispatch(actionCreators.pageChange(page + 1));
     } else {
       dispatch(actionCreators.pageChange(1));
     }
-
   }
 });
 
