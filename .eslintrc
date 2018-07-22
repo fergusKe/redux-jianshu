@@ -65,6 +65,7 @@
     "react/style-prop-object": "off",
     "import/prefer-default-export": "off",
 		"class-methods-use-this": "off",
-		"no-unused-expressions": "off"
+		"no-unused-expressions": "off",
+		"react/no-unused-state": "off"
   }
 }
