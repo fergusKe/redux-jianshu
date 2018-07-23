@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import { actionCreators } from './store';
 import {
@@ -78,7 +79,9 @@ class Header extends Component {
     } = this.props;
     return (
       <HeaderWrapper>
-        <Logo />
+        <Link to="/">
+          <Logo />
+        </Link>
         <Nav>
           <NavItem className="left active">首页</NavItem>
           <NavItem className="left">下载App</NavItem>
@@ -147,7 +150,6 @@ const mapDispatchToProps = dispatch => ({
     } else {
       originAngle = 0;
     }
-    console.log(originAngle);
     spin.style.transform = `rotate(${originAngle + 360}deg)`;
 
     if (page < totalPage) {
