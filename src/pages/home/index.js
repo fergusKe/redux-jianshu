@@ -8,15 +8,31 @@ import { actionCreators } from './store';
 import {
   HomeWrapper,
   HomeLeft,
-  HomeRight
+  HomeRight,
+  BackTop
 } from './style';
 
 class Home extends Component {
   componentDidMount() {
     this.props.changeHomeData();
+    this.bindEvents();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.props.changeScrollShow);
+  }
+
+  bindEvents() {
+    window.addEventListener('scroll', this.props.changeScrollShow);
+  }
+
+  handleScrollTop() {
+    window.scrollTo(0, 0);
   }
 
   render() {
+    const { showScroll } = this.props;
+
     return (
       <HomeWrapper>
         <HomeLeft>
@@ -28,15 +44,30 @@ class Home extends Component {
           <Recommend />
           <Writer />
         </HomeRight>
+        {
+          showScroll ? <BackTop onClick={this.handleScrollTop}>頂部</BackTop> : null
+        }
+
       </HomeWrapper>
     );
   }
 }
 
+const mapStateToProps = state => ({
+  showScroll: state.getIn(['home', 'showScroll'])
+});
+
 const mapDispatchToProps = dispatch => ({
   changeHomeData: () => {
     dispatch(actionCreators.getHomeInfo());
+  },
+  changeScrollShow: () => {
+    if (document.documentElement.scrollTop > 100) {
+      dispatch(actionCreators.toggleTopShow(true));
+    } else {
+      dispatch(actionCreators.toggleTopShow(false));
+    }
   }
 });
 
-export default connect(null, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
